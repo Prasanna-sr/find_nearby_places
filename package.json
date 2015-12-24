@@ -4,8 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "bower install",
+    "prestart": "npm install",
+    "start": "http-server ./app -d false -p 3000",
+    "pretest": "npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bower": "^1.7.1",
+    "http-server": "^0.8.5"
+  }
 }

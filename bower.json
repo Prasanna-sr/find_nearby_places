@@ -1,0 +1,20 @@
+{
+  "name": "find_places",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Prasanna-sr/find_nearby_places",
+  "authors": [
+    "prasanna ramanujam <prasannaraajkumar@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "angular": "~1.4.8"
+  }
+}
