@@ -4,14 +4,15 @@ placesMap.inject = [];
 function placesMap() {
   function link(scope, element, attrs) {
     var map;
+    var coords;
+    var location;
     var infowindow;
     scope.$watch('places', function(newValue, oldValue) {
       var results = newValue;
-      var coords;
-      var location;
       if (results) {
         coords = scope.coords;
         location = new google.maps.LatLng(coords.lat, coords.lng);
+        infowindow = new google.maps.InfoWindow();
         map = new google.maps.Map(document.getElementById('map'), {
           center: location,
           zoom: 15
@@ -30,10 +31,10 @@ function placesMap() {
         position: placeLoc
       });
 
-      // google.maps.event.addListener(marker, 'click', function() {
-      //   infowindow.setContent(place.name);
-      //   infowindow.open(map, this);
-      // });
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(place.name);
+        infowindow.open(map, this);
+      });
     }
   }
 
