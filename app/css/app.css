@@ -2,15 +2,15 @@
   box-sizing: border-box;
 }
 
-header {
+.place-finder header {
   background: black;
   margin-bottom: 10px;
 }
-header .search input, header .search button {
+.place-finder header .search input, .place-finder header .search button {
   width: 150px;
   height: 30px;
 }
-header h1 {
+.place-finder header h1 {
   display: inline-block;
   color: white;
   padding: 20px 0 0 20px;
@@ -28,24 +28,30 @@ header h1 {
   margin-right: 20px;
   border: solid grey 1px;
 }
-.content {
+.place-finder .content {
   padding: 0;
   width: 1000px;
 }
-.content .list {
+.place-finder .content .list {
   margin-left: 10%;
   display: inline-block;
   vertical-align: top;
+  /*border: solid grey 2px;*/
   width: 40%;
 }
-.content .list h1 {
+
+.place-finder .list li {
+  border-top: solid #CAC9C9 2px;
+  margin-bottom: 2px;
+}
+.place-finder .content .list h1 {
   font-weight: bold;
   font-size: 1.5em;
 }
 /*.map-wrapper {
   position: relative;
 }*/
-.map-container {
+.place-finder .map-container {
   position: absolute;
   top: 170px;
   left: 40%;
@@ -53,7 +59,7 @@ header h1 {
   height: 350px;
 }
 
-.map-container-fixed {
+.place-finder .map-container-fixed {
   position: fixed;
   top: 2px;
   left: 40%;

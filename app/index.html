@@ -16,7 +16,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqRYRb5O7eYKT49fDQXkQZn5PFasHrNYE&libraries=places"></script>
 </head>
 
-<body ng-controller="findPlacesController">
+<body ng-controller="findPlacesController" class="place-finder">
   <header>
     <h1>Places Finder</h1>
     <div class="search">
@@ -40,6 +40,7 @@
     <section class="list">
       <ul>
         <li ng-repeat="place in places | pricesFilter:price1:price2:price3:price4 | openNowFilter:openNow">
+          <div data-placeid={{place.place_id}}>
           <h1> {{place.name}} </h1>
           <div>
             <span ng-repeat="i in generateList(place.rating) track by $index">&#9733</span>
@@ -48,6 +49,7 @@
             <span ng-repeat="i in generateList(place.price_level) track by $index">&#36;</span>
           </div>
           <label> {{place.formatted_address}}</label>
+          <div>
         </li>
       </ul>
     </section>
