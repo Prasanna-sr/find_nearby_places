@@ -13,7 +13,8 @@
   <script src="js/controllers.js"></script>
   <script src="js/directives.js"></script>
   <script src="js/filter.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqRYRb5O7eYKT49fDQXkQZn5PFasHrNYE&libraries=places"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?
+  key=AIzaSyAqRYRb5O7eYKT49fDQXkQZn5PFasHrNYE&libraries=places"></script>
 </head>
 
 <body ng-controller="findPlacesController as fpCont" class="place-finder">
@@ -39,7 +40,9 @@
   <div class="content">
     <section class="list">
       <ul>
-        <li ng-repeat="place in fpCont.places | pricesFilter:fpCont.price1:fpCont.price2:fpCont.price3:fpCont.price4 | openNowFilter:fpCont.openNow">
+        <li ng-repeat="place in fpCont.places |
+         pricesFilter:fpCont.price1:fpCont.price2:fpCont.price3:fpCont.price4 |
+         openNowFilter:fpCont.openNow">
           <div data-placeid={{place.place_id}}>
           <h1> {{place.name}} </h1>
           <div>

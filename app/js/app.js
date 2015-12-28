@@ -1,3 +1,5 @@
+'use strict';
+
 var findPlaces = angular.module('findPlaces', []);
 findPlaces.constant('APP_CONSTANT', {
   geocodeURL: 'https://maps.googleapis.com/maps/api/geocode/json',

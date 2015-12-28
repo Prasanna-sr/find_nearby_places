@@ -1,3 +1,5 @@
+'use strict';
+
 findPlaces.directive('placesMap', placesMap);
 findPlaces.inject = ['$filter'];
 

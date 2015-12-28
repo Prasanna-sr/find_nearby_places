@@ -1,3 +1,5 @@
+'use strict';
+
 findPlaces.filter('pricesFilter', pricesFilter);
 findPlaces.filter('openNowFilter', openNowFilter);
 

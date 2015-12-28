@@ -9,12 +9,18 @@
     "prestart": "npm install",
     "start": "http-server ./app -d false -p 3000",
     "pretest": "npm install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node node_modules/karma/bin/karma start test/karma.conf.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "bower": "^1.7.1",
     "http-server": "^0.8.5"
+  },
+  "devDependencies": {
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.16",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.6"
   }
 }

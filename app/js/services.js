@@ -1,3 +1,5 @@
+'use strict';
+
 findPlaces.factory('findPlacesService', findPlacesService);
 findPlacesService.inject = ['$http', '$q', 'APP_CONSTANT'];
 

@@ -1,7 +1,9 @@
-findPlaces.controller('findPlacesController', findPlacesController);
-findPlacesController.inject = ['$scope','findPlacesService'];
+'use strict';
 
-function findPlacesController($scope, findPlacesService) {
+findPlaces.controller('findPlacesController', findPlacesController);
+findPlacesController.inject = ['findPlacesService'];
+
+function findPlacesController(findPlacesService) {
   var currentPostion = {};
   var vm = this;
   vm.search = search;
