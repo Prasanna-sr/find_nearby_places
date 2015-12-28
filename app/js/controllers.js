@@ -1,39 +1,46 @@
 findPlaces.controller('findPlacesController', findPlacesController);
-findPlacesController.inject = ['$scope', 'findPlacesService'];
+findPlacesController.inject = ['$scope','findPlacesService'];
 
 function findPlacesController($scope, findPlacesService) {
   var currentPostion = {};
-  $scope.search = search;
-  $scope.generateList = generateList;
-  function generateList(num) {
-    if(num) {
-        return new Array(Math.round(num));
-    } else {
-      return [];
-    }
+  var vm = this;
+  vm.search = search;
+  vm.generateList = generateList;
+  vm.places = [];
+  initialize();
 
-  }
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      currentPostion.lat = position.coords.latitude;
-      currentPostion.lng = position.coords.longitude;
-    });
+  function initialize() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        currentPostion.lat = position.coords.latitude;
+        currentPostion.lng = position.coords.longitude;
+      });
+    }
   }
 
   function search() {
     var coords;
-    if (!$scope.nearby) {
-      $scope.coords = currentPostion;
-      findPlacesService.fetchPlaces($scope.query, $scope.coords).then(function(results) {
-        $scope.places = results;
+    if (!vm.nearby) {
+      vm.coords = currentPostion;
+      findPlacesService.fetchPlaces(vm.query, vm.coords).then(function(results) {
+        vm.places = results;
       });
     } else {
-      findPlacesService.getCoords($scope.nearby).then(function(response) {
-        $scope.coords = response.data.results[0].geometry.location;
-        findPlacesService.fetchPlaces($scope.query, $scope.coords).then(function(results) {
-          $scope.places = results;
+      findPlacesService.getCoords(vm.nearby).then(function(response) {
+        vm.coords = response.data.results[0].geometry.location;
+        findPlacesService.fetchPlaces(vm.query, vm.coords).then(function(results) {
+          vm.places = results;
         });
       });
     }
+  }
+
+  function generateList(num) {
+    if (num) {
+      return new Array(Math.round(num));
+    } else {
+      return [];
+    }
+
   }
 }

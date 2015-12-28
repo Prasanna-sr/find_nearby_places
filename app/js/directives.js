@@ -1,18 +1,25 @@
 findPlaces.directive('placesMap', placesMap);
+findPlaces.inject = ['$filter'];
 
-function placesMap() {
+function placesMap($filter) {
   var markerList = [];
-  function link(scope, element, attrs) {
+
+  function link(scope, element, attrs, vm) {
     var map;
     var coords;
     var location;
     var infowindow;
-
-    scope.$watch('places', function(newValue, oldValue) {
+    var watchList = ['fpCont.places', 'fpCont.openNow',
+      'fpCont.price1', 'fpCont.price2', 'fpCont.price3',
+      'fpCont.price4'
+    ];
+    scope.$watchGroup(watchList, function(newValues, oldValues) {
       markerList = [];
-      var results = newValue;
-      if (results) {
-        coords = scope.coords;
+      var filteredResults = $filter('openNowFilter')(newValues[0], vm.openNow);
+      var results = $filter('pricesFilter')(filteredResults, vm.price1, vm.price2, vm.price3, vm.price4);
+
+      if (results.length) {
+        coords = vm.coords;
         location = new google.maps.LatLng(coords.lat, coords.lng);
         infowindow = new google.maps.InfoWindow();
         map = new google.maps.Map(document.getElementById('map'), {
@@ -22,6 +29,15 @@ function placesMap() {
         for (var i = 0; i < results.length; i++) {
           createMarker(results[i]);
         }
+      } else if (newValues[0].length && !results.length) {
+        //when filtered results are zero, shows map with no places
+        coords = vm.coords;
+        location = new google.maps.LatLng(coords.lat, coords.lng);
+        infowindow = new google.maps.InfoWindow();
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: location,
+          zoom: 13
+        });
       }
     });
 
@@ -41,7 +57,7 @@ function placesMap() {
       });
     }
   }
-  
+
   angular.element(document).on('mousemove', '.place-finder .list li', function() {
     var placeid = angular.element(this).children('div').attr('data-placeid');
     markerList.forEach(function(obj) {
@@ -75,6 +91,8 @@ function placesMap() {
 
   return {
     link: link,
+    controller: 'findPlacesController',
+    controllerAs: 'fpCont',
     restrict: 'A'
   };
 }

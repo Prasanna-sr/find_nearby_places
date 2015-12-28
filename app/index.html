@@ -16,37 +16,37 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqRYRb5O7eYKT49fDQXkQZn5PFasHrNYE&libraries=places"></script>
 </head>
 
-<body ng-controller="findPlacesController" class="place-finder">
+<body ng-controller="findPlacesController as fpCont" class="place-finder">
   <header>
     <h1>Places Finder</h1>
     <div class="search">
-      <input type="text" ng-model="query" placeholder="search" />
-      <input type="text" ng-model="nearby" placeholder="current location or nearby" />
-      <button ng-click="search()">search</button>
+      <input type="text" ng-model="fpCont.query" placeholder="search" />
+      <input type="text" ng-model="fpCont.nearby" placeholder="current location or nearby" />
+      <button ng-click="fpCont.search()">search</button>
     </div>
     <div class="filter">
       <div class="open">
-        <input type="checkbox" value="true" ng-model="openNow" /> open now
+        <input type="checkbox" value="true" ng-model="fpCont.openNow" /> open now
       </div>
       <div class="price">
-        <input type="checkbox" ng-model="price1" /> $
-        <input type="checkbox" ng-model="price2" /> $$
-        <input type="checkbox" ng-model="price3" /> $$$
-        <input type="checkbox" ng-model="price4" /> $$$$
+        <input type="checkbox" ng-model="fpCont.price1" /> $
+        <input type="checkbox" ng-model="fpCont.price2" /> $$
+        <input type="checkbox" ng-model="fpCont.price3" /> $$$
+        <input type="checkbox" ng-model="fpCont.price4" /> $$$$
       </div>
     </div>
   </header>
   <div class="content">
     <section class="list">
       <ul>
-        <li ng-repeat="place in places | pricesFilter:price1:price2:price3:price4 | openNowFilter:openNow">
+        <li ng-repeat="place in fpCont.places | pricesFilter:fpCont.price1:fpCont.price2:fpCont.price3:fpCont.price4 | openNowFilter:fpCont.openNow">
           <div data-placeid={{place.place_id}}>
           <h1> {{place.name}} </h1>
           <div>
-            <span ng-repeat="i in generateList(place.rating) track by $index">&#9733</span>
+            <span ng-repeat="i in fpCont.generateList(place.rating) track by $index">&#9733</span>
           </div>
           <div>
-            <span ng-repeat="i in generateList(place.price_level) track by $index">&#36;</span>
+            <span ng-repeat="i in fpCont.generateList(place.price_level) track by $index">&#36;</span>
           </div>
           <label> {{place.formatted_address}}</label>
           <div>
