@@ -38,6 +38,22 @@ function placesMap() {
     }
   }
 
+  angular.element(document).scroll(function() {
+    var top = angular.element(document).scrollTop();
+    var map = angular.element('.map-wrapper');
+    var header = angular.element('header').outerHeight(true);
+    var mapOffset = map.offset().top;
+    var mapOffsetWindow = mapOffset - top;
+    if (mapOffsetWindow <= 2) {
+      map.removeClass('map-container');
+      map.addClass('map-container-fixed');
+    }
+    if (mapOffsetWindow <= 2 && top < header) {
+      map.removeClass('map-container-fixed');
+      map.addClass('map-container');
+    }
+  });
+
   return {
     link: link,
     restrict: 'A'
