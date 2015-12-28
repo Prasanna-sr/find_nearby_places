@@ -54,16 +54,16 @@
 .place-finder .map-container {
   position: absolute;
   top: 170px;
-  left: 40%;
-  width: 600px;
+  left: 50%;
+  width: 500px;
   height: 350px;
 }
 
 .place-finder .map-container-fixed {
   position: fixed;
   top: 2px;
-  left: 40%;
-  width: 600px;
+  left: 50%;
+  width: 500px;
   height: 350px;
 }
 
