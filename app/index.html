@@ -10,6 +10,7 @@
   <script src="js/services.js"></script>
   <script src="js/controllers.js"></script>
     <script src="js/directives.js"></script>
+    <script src="js/filter.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqRYRb5O7eYKT49fDQXkQZn5PFasHrNYE&libraries=places"></script>
 </head>
 
@@ -23,11 +24,20 @@
     </div>
   </header>
   <div class="filter">
+    <div class="open">
+    <input type="checkbox" value="true" ng-model="openNow"/> open now
+  </div>
+  <div class="price">
+    <input type="checkbox" ng-model="price1"/> $
+    <input type="checkbox" ng-model="price2"/> $$
+    <input type="checkbox" ng-model="price3"/> $$$
+    <input type="checkbox" ng-model="price4"/> $$$$
+</div>
   </div>
   <div class="content">
     <section class="list">
       <ul>
-        <li ng-repeat="place in places"><h1> {{place.name}} </h1>
+        <li ng-repeat="place in places | pricesFilter:price1:price2:price3:price4 | openNowFilter:openNow"><h1> {{place.name}} </h1>
           <div><span ng-repeat="i in generateList(place.rating) track by $index">&#9733</span></div>
           <div><span ng-repeat="i in generateList(place.price_level) track by $index">&#36;</span></div>
            <label> {{place.formatted_address}}</label></li>
