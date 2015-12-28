@@ -4,9 +4,17 @@ findPlacesController.inject = ['$scope', 'findPlacesService'];
 function findPlacesController($scope, findPlacesService) {
   var currentPostion = {};
   $scope.search = search;
+  $scope.generateList = generateList;
+  function generateList(num) {
+    if(num) {
+        return new Array(Math.round(num));
+    } else {
+      return [];
+    }
+
+  }
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      console.log(position);
       currentPostion.lat = position.coords.latitude;
       currentPostion.lng = position.coords.longitude;
     });

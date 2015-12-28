@@ -15,16 +15,22 @@
 
 <body ng-controller="findPlacesController">
   <header>
+    <h1>Places Finder</h1>
     <div class="search">
       <input type="text" ng-model="query" placeholder="query" />
       <input type="text" ng-model="nearby" placeholder="nearby" />
       <button ng-click="search()">search</button>
     </div>
   </header>
+  <div class="filter">
+  </div>
   <div class="content">
     <section class="list">
       <ul>
-        <li ng-repeat="place in places"><h1> {{place.name}} </h1> <label> {{place.formatted_address}}</label></li>
+        <li ng-repeat="place in places"><h1> {{place.name}} </h1>
+          <div><span ng-repeat="i in generateList(place.rating) track by $index">&#9733</span></div>
+          <div><span ng-repeat="i in generateList(place.price_level) track by $index">&#36;</span></div>
+           <label> {{place.formatted_address}}</label></li>
       </ul>
     </section>
     <div id="map" places-map>

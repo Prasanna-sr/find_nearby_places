@@ -15,7 +15,7 @@ function placesMap() {
         infowindow = new google.maps.InfoWindow();
         map = new google.maps.Map(document.getElementById('map'), {
           center: location,
-          zoom: 15
+          zoom: 13
         });
         for (var i = 0; i < results.length; i++) {
           createMarker(results[i]);
